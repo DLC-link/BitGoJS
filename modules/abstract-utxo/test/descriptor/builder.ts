@@ -8,9 +8,10 @@ function getDescriptorBuilderForType(name: DescriptorBuilder['name']): Descripto
   switch (name) {
     case 'Wsh2Of2':
     case 'Wsh2Of3':
+    case 'iBTC':
       return {
         name,
-        keys: keys.slice(0, name === 'Wsh2Of3' ? 3 : 2),
+        keys: keys.slice(0, ['Wsh2Of3', 'iBTC'].includes(name) ? 3 : 2),
         path: '0/*',
       };
     case 'Wsh2Of3CltvDrop':

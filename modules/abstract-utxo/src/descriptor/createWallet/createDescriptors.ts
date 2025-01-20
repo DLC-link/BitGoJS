@@ -42,3 +42,17 @@ function createExternalInternalPair(
  */
 export const DefaultWsh2Of3: DescriptorFromKeys = (userKey, cosigners) =>
   createExternalInternalPair({ name: 'Wsh2Of3', keys: [userKey.neutered(), ...cosigners], path: '' }, userKey);
+
+const iBTCBuilder = (userKey, cosigners): DescriptorBuilder => ({
+  name: 'iBTC',
+  keys: [userKey.neutered(), ...cosigners],
+  path: '0/*',
+});
+
+export const DefaultIBTC: DescriptorFromKeys = (userKey, cosigners) => [
+  createNamedDescriptorWithSignature(
+    iBTCBuilder.name + '/external',
+    getDescriptorFromBuilder(iBTCBuilder(userKey, cosigners)),
+    userKey
+  ),
+];
